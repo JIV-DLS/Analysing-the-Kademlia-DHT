@@ -15,7 +15,7 @@ The entire project is written in Python, you can try simulation using the follow
 python __init__.py 50 15 20 2 1
 ```
 
-The first parameter is the number of the nodes that we want to insert in the network. The second parameter is the lenght
+The first parameter is the number of the nodes that we want to insert in the network. The second parameter is the length
 of the identifier of each node. The third parameter is the lenght of the KBucket List.
 The other parameters are described in the final report.
 
