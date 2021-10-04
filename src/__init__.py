@@ -6,8 +6,8 @@
     in modo differente.
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+#reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 from Coordinator import *
 from Node import *
@@ -83,7 +83,9 @@ def createGraph(index):
         for line in file:
             arrayLine = line.strip('\n').split(" ")
             graph.add_edge(arrayLine[0], arrayLine[1])
-
+    f = plt.figure()
+    nx.draw(graph, ax=f.add_subplot(111))
+    f.savefig("./results/graph.png")      
     if(index >= 0):
         Analysis.startAnalysis(graph, index=index)
     else:
@@ -129,10 +131,10 @@ def checkInput():
         if(simple==False):
             numSlot = int(sys.argv[6])
             if(numSlot < 0):
-                print "numSlot: input non valido"
+                print ("numSlot: input non valido")
     
         if(numNodes < 0 or idLen < 0 or maxBucketList < 0 or simple<0 or simple > 1 or mode < 0 or mode > 2):
-            print "Input non valido"
+            print ("Input non valido")
             return False
         else:
             return True
@@ -149,11 +151,11 @@ simple = ""
 numSlot = ""
 mode = ""
 
-print idLen
+print (idLen)
 
 if(checkInput()):
     if(numNodes > pow(2,idLen)):
-        print "Lunghezza degli identificatori non sufficiente"
+        print ("Lunghezza degli identificatori non sufficiente")
     else:
         # Creazione del coordinatore 
         coordinator = coordinator(numNodes, idLen, maxBucketList, mode)

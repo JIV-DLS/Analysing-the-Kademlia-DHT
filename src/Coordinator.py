@@ -4,14 +4,14 @@ from RoutingTable import *
 from Node import *
 import random
 from random import choice
-from Crypto.Hash import SHAKE256
+from hashlib import sha256
 from binascii import hexlify
 from random import choice
 from Exceptions import *
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+
+
 
 class coordinator():
 
@@ -56,7 +56,7 @@ class coordinator():
         try:
             self.addNodeInStructure(firstNode.id, firstNode)
         except duplicateNode:
-            print "Impossibile inserire il nodo nella rete. ID già presente"
+            print ("Impossibile inserire il nodo nella rete. ID già presente")
         
     
     def addNodeInStructure(self, ID, node):
@@ -66,7 +66,7 @@ class coordinator():
         Arguments:
             node: il nodo da inserire all'interno della struttura
         """
-        if(not self.structure.has_key(ID)):
+        if(not ID in self.structure):
             self.structure[ID] = RoutingTable(self.idLen, self.maxBucketList, node, self.mode)
             self.savedNodes += 1
         else:   
@@ -247,7 +247,7 @@ class coordinator():
         position = self.computeDistance(joiningNode.id,bootstrapNode.id, True)
         if(self.structure[bootstrapNode.id].routingTable[position].insert(joiningNode)>0):
             (self.structure[bootstrapNode.id]).incrementNumContacts()
-        if(not self.structure.has_key(joiningNode.id)):
+        if(not joiningNode.id in self.structure):
             self.addNodeInStructure(joiningNode.id, joiningNode)
 
         if(self.structure[joiningNode.id].routingTable[position].insert(bootstrapNode)>0):
@@ -293,9 +293,9 @@ class coordinator():
         Returns:
             id del nodo
         """
-        bitID = ''.join(choice(['0', '1']) for _ in xrange(len))
-        while(self.id.has_key(bitID)):
-            bitID = ''.join(choice(['0', '1']) for _ in xrange(len))
+        bitID = ''.join(choice(['0', '1']) for _ in range(len))
+        while(bitID in self.id):
+            bitID = ''.join(choice(['0', '1']) for _ in range(len))
         self.id[bitID] = ""
         return bitID
     
@@ -315,9 +315,9 @@ class coordinator():
             id generato random e appartenente al bucket is
         """
         if(i==0):
-            bitID = ''.join(choice(['0', '1']) for _ in xrange(i+1))
+            bitID = ''.join(choice(['0', '1']) for _ in range(i+1))
         else:
-            bitID = ''.join(choice(['0', '1']) for _ in xrange(i))
+            bitID = ''.join(choice(['0', '1']) for _ in range(i))
             bitID = "1" + bitID
         
         randomID = bitID.zfill(self.idLen)
@@ -341,9 +341,8 @@ class coordinator():
         data = {}
         id = ""
         with open('./results/graph.txt', 'w') as writer:
-    
-            for key, value in self.structure.iteritems():
-                if(mappa.mapID.has_key(key)):
+            for key, value in list(self.structure.items()):
+                if(key in mappa.mapID):
                     id = mappa.mapID[key]
                 else:
                     id = mappa.getCounter()
@@ -361,9 +360,9 @@ class coordinator():
         Funzione di debug usata per la stampa delle routing table
         """
 
-        print ""
-        print ""
-        print ""
+        print ("")
+        print ("")
+        print ("")
         array = []
         kList = []
         for key, value in self.structure.iteritems():
@@ -374,5 +373,5 @@ class coordinator():
             for kBucket in value.routingTable:
                 kList.append(kBucket.length)
 
-        print "Routing Table: " , array
-        print "BucketList: " , kList
+        print ("Routing Table: " , array)
+        print ("BucketList: " , kList)

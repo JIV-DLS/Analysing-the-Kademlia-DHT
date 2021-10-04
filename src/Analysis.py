@@ -3,8 +3,6 @@
     Codice per avviare le analisi del grafo
 """
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -38,11 +36,12 @@ def startAnalysis(graph, index = -1):
         index {int} -- Intero che viene passato quando devo fare l'analisi temporale, mi indica su quale slot
         stiamo lavorando (default: {-1})
     """
-    print "INDEX ", index
-    print 
+    #print ("INDEX ", index)
+    #print ()
     
     
-    with open('./results/' + str(index) + '20results.txt', 'w') as writer:
+    #with open('./results/' + str(index) + '20results.txt', 'w') as writer:
+    with open('./results/results.txt', 'w') as writer:
         
         # Queste analisi le faccio sia sul grafo completo che sugli snapshot
         

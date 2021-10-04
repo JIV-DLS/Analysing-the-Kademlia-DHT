@@ -4,14 +4,13 @@ from RoutingTable import *
 from Node import *
 import random
 from random import choice
-from Crypto.Hash import SHAKE256
+
+from hashlib import sha256
 from binascii import hexlify
 from random import choice
 from Exceptions import *
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 class Map():
     """

@@ -1,0 +1,1 @@
+winpty docker run -it --rm --mount source=results,target=/app/results  kadmelia-python3 > graph.txt

@@ -17,7 +17,7 @@ class Node():
         """
             Stampa dell'id del nodo
         """
-        print self.id
+        print (self.id)
 
 
     

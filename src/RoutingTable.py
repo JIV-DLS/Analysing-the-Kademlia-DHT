@@ -45,14 +45,14 @@ class RoutingTable():
         Stampa del contenuto della routing table.
         Funzione usata per il debug
         """
-        print "numContacts: ", self.numContacts
+        print ("numContacts: ", self.numContacts)
         
         for kbucket in self.routingTable:
             if kbucket.isEmpty():
-                print "---"
+                print( "---")
             else:
                 kbucket.printKBucketList()
-                print "****"
+                print ("****")
 
 
     def getRoutingTable(self, mappa):

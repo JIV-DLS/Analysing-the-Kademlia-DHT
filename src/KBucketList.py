@@ -112,7 +112,7 @@ class kBucketList():
         """
         tmp = []
         for nodes in self.array:
-            if(mappa.mapID.has_key(nodes.id)):
+            if(nodes.id in mappa.mapID):
                 tmp.append(mappa.mapID[nodes.id])
             else:
                 id = mappa.getCounter()
@@ -126,9 +126,9 @@ class kBucketList():
         """
         Funzione di debug per la stampa della bucket list
         """
-        print len(self.array)
+        print (len(self.array))
         for node in self.array:
-            print "@@@@@@@@", node.id
+            print ("@@@@@@@@", node.id)
 
         
 
