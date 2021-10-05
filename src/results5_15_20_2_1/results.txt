@@ -1,0 +1,7 @@
+Numero Archi 20
+Numero Nodi 5
+Connected Components 1
+Strongly Connected Components 1
+Diameter 1
+Average Shortest Path Length 1.0
+Average Clustering1.0
